@@ -27,7 +27,7 @@ int print_alias(MyListString *node)
 {
 char *p = NULL, *a = NULL;
 if (node)
-    {
+{
 p = _LocateChar(node->string, '=');
 for (a = node->string; a <= p; a++)
 _putchar(*a);
@@ -47,25 +47,24 @@ return (1);
  */
 int Change_alias(Passed_Info_t *Pinfo)
 {
-    int i;
-    MyListString *node;
-    char *p;
-
-    for (i = 0; i < 10; i++)
-    {
-        node = getNodeStartWith(Pinfo->alias, Pinfo->argv[0], '=');
-        if (!node)
-            return (0);
-        free(Pinfo->argv[0]);
-        p = _LocateChar(node->string, '=');
-        if (!p)
-            return (0);
-        p = _StrDublicate(p + 1);
-        if (!p)
-            return (0);
-        Pinfo->argv[0] = p;
-    }
-    return (1);
+int i;
+MyListString *node;
+char *p;
+for (i = 0; i < 10; i++)
+{
+node = getNodeStartWith(Pinfo->alias, Pinfo->argv[0], '=');
+if (!node)
+return (0);
+free(Pinfo->argv[0]);
+p = _LocateChar(node->string, '=');
+if (!p)
+return (0);
+p = _StrDublicate(p + 1);
+if (!p)
+return (0);
+Pinfo->argv[0] = p;
+}
+return (1);
 }
 
 /**
@@ -77,16 +76,15 @@ int Change_alias(Passed_Info_t *Pinfo)
  */
 int Remove_alias(Passed_Info_t *Pinfo, char *string)
 {
-    char *p, c;
-    int res;
-
-    p = _LocateChar(string, '=');
-    if (!p)
-        return (1);
-    c = *p;
-    *p = 0;
-    res = SupprimeNodeAt(&(Pinfo->alias),
-                         getNodeIndexAt(Pinfo->alias, getNodeStartWith(Pinfo->alias, string, -1)));
-    *p = c;
-    return (res);
+char *p, c;
+int res;
+p = _LocateChar(string, '=');
+if (!p)
+return (1);
+c = *p;
+*p = 0;
+res = SupprimeNodeAt(&(Pinfo->alias),
+getNodeIndexAt(Pinfo->alias, getNodeStartWith(Pinfo->alias, string, -1)));
+*p = c;
+return (res);
 }
