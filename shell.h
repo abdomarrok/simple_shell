@@ -86,8 +86,8 @@ typedef struct Passed_Info
 	int Env_Status;
 	int status;
 
-	char **Command_Buffer;	
-	int Command_Buffer_Type; 
+	char **Command_Buffer;
+	int Command_Buffer_Type;
 	int ReadFileInput;
 	int History_File_count;
 } Passed_Info_t;

@@ -42,6 +42,6 @@ int _Help(Passed_Info_t *Pinfo)
 	arg_Arr = Pinfo->argv;
 	_puts("help call works. Function not yet implemented \n");
 	if (0)
-		_puts(*arg_Arr); 
+		_puts(*arg_Arr);
 	return (0);
 }

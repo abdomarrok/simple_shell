@@ -61,7 +61,7 @@ ssize_t Get_in(Passed_Info_t *Pinfo)
 		return (-1);
 	if (length) /* we have commands left in the chain buffer */
 	{
-		j = i;		 /* init new iterator to current Buffer position */
+		j = i;			/* init new iterator to current Buffer position */
 		p = Buffer + i; /* get pointer for return */
 
 		Check_Hist_Chain(Pinfo, Buffer, &j, i, length);
@@ -72,19 +72,19 @@ ssize_t Get_in(Passed_Info_t *Pinfo)
 			j++;
 		}
 
-		i = j + 1;	  /* increment past nulled ';'' */
+		i = j + 1;		 /* increment past nulled ';'' */
 		if (i >= length) /* reached end of buffer? */
 		{
 			i = length = 0; /* reset position and length */
 			Pinfo->Command_Buffer_Type = Command_Norm;
 		}
 
-		*Buffer_p = p;			 /* pass back pointer to current command position */
+		*Buffer_p = p;		 /* pass back pointer to current command position */
 		return (_StrLen(p)); /* return length of current command */
 	}
 
 	*Buffer_p = Buffer; /* else not a chain, pass back buffer from _getline() */
-	return (r);	  /* return length of buffer from _getline() */
+	return (r);			/* return length of buffer from _getline() */
 }
 
 /**

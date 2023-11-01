@@ -142,8 +142,7 @@ void Fork_Command(Passed_Info_t *Pinfo)
 				exit(126);
 			exit(1);
 		}
-		
-	}
+		}
 	else
 	{
 		wait(&(Pinfo->status));
