@@ -17,8 +17,10 @@ int _cd(Passed_Info_t *Pinfo)
 	{
 		dirctory = _Get_Env(Pinfo, "HOME=");
 		if (!dirctory)
+{
 chdirctory_ret =
 chdir((dirctory = _Get_Env(Pinfo, "PWD=")) ? dirctory : "/");
+}
 		else
 			chdirctory_ret = chdir(dirctory);
 	}
