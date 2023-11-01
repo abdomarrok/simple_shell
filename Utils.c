@@ -85,7 +85,7 @@ int Str_to_Int(char *s)
 	unsigned long int res = 0;
 
 	if (*s == '+')
-		s++; /
+		s++; 
 	for (i = 0; s[i] != '\0'; i++)
 	{
 		if (s[i] >= '0' && s[i] <= '9')
