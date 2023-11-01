@@ -114,18 +114,18 @@ char **Get_Environ(Passed_Info_t *Pinfo)
  *  Return: 1 on delete, 0 otherwise
  * @var: the string env var property
  */
-int RemoveEnvVarByName(Passed_Info_t *Pinfo, char *var)
+int RemoveEnvVarByName(Passed_Info_t *Pinfo, char *name)
 {
 	MyListString *node = Pinfo->env;
 	size_t i = 0;
 	char *p;
 
-	if (!node || !var)
+	if (!node || !name)
 		return (0);
 
 	while (node)
 	{
-		p = StrStartWith(node->string, var);
+		p = StrStartWith(node->string, name);
 		if (p && *p == '=')
 		{
 			Pinfo->Env_Status = SupprimeNodeAt(&(Pinfo->env), i);
@@ -144,40 +144,40 @@ int RemoveEnvVarByName(Passed_Info_t *Pinfo, char *var)
  *             or modify an existing one
  * @Pinfo: Structure containing potential arguments. Used to maintain
  *        constant function prototype.
- * @var: the string env var property
- * @value: the string env var value
+ * @name: the string env name property
+ * @value: the string env name value
  *  Return: Always 0
  */
-int _Set_Or_Edit_Env(Passed_Info_t *Pinfo, char *var, char *value)
+int _Set_Or_Edit_Env(Passed_Info_t *Pinfo, char *name, char *value)
 {
-	char *buf = NULL;
+	char *Buffer = NULL;
 	MyListString *node;
 	char *p;
 
-	if (!var || !value)
+	if (!name || !value)
 		return (0);
 
-	buf = malloc(_StrLen(var) + _StrLen(value) + 2);
-	if (!buf)
+	Buffer = malloc(_StrLen(name) + _StrLen(value) + 2);
+	if (!Buffer)
 		return (1);
-	_StrCopy(buf, var);
-	_StrConcatinate(buf, "=");
-	_StrConcatinate(buf, value);
+	_StrCopy(Buffer, name);
+	_StrConcatinate(Buffer, "=");
+	_StrConcatinate(Buffer, value);
 	node = Pinfo->env;
 	while (node)
 	{
-		p = StrStartWith(node->string, var);
+		p = StrStartWith(node->string, name);
 		if (p && *p == '=')
 		{
 			free(node->string);
-			node->string = buf;
+			node->string = Buffer;
 			Pinfo->Env_Status = 1;
 			return (0);
 		}
 		node = node->next;
 	}
-	ajouterNode_end(&(Pinfo->env), buf, 0);
-	free(buf);
+	ajouterNode_end(&(Pinfo->env), Buffer, 0);
+	free(Buffer);
 	Pinfo->Env_Status = 1;
 	return (0);
 }
