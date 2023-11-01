@@ -33,9 +33,10 @@ return (s);
  */
 char *_LocateChar(char *s, char c)
 {
-do{
+while (*s++ != '\0')
+{
 if (*s == c)
 return (s);
-} while (*s++ != '\0');
+}
 return (NULL);
 }

@@ -71,7 +71,7 @@ char *ConvertNum(long int num, int base, int Flags)
 	static char buffer[50];
 	char sign = 0;
 	char *ptr;
-	unsigned long int n = num;
+	unsigned long n = num;
 
 	if (!(Flags & ConvUnsigned) && num < 0)
 	{
@@ -82,10 +82,11 @@ char *ConvertNum(long int num, int base, int Flags)
 	ptr = &buffer[49];
 	*ptr = '\0';
 
-	do{
-		*--ptr = array[n % base];
-		n /= base;
-} while (n != 0);
+while (n != 0)
+{
+*--ptr = array[n % base];
+n /= base;
+}
 
 	if (sign)
 		*--ptr = sign;
