@@ -1,9 +1,9 @@
 #include "shell.h"
 
 /**
- * **_strtok - splits a string into words. Repeat delimiters are ignored
+ * _strtok - splits a string into words. Repeat delimiters are ignored
  * @string: the input string
- * @d: the delimeter string
+ * @delim: the delimeter string
  * Return: a pointer to an array of strings, or NULL on failure
  */
 
@@ -17,7 +17,8 @@ char **_strtok(char *string, char *delim)
 	if (!delim)
 		delim = " ";
 	for (i = 0; string[i] != '\0'; i++)
-		if (!Is_Delim(string[i], delim) && (Is_Delim(string[i + 1], delim) || !string[i + 1]))
+if (!Is_Delim(string[i], delim) &&
+(Is_Delim(string[i + 1], delim) || !string[i + 1]))
 			WordNums++;
 
 	if (WordNums == 0)
