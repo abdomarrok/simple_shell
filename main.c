@@ -12,10 +12,11 @@ int main(int argc, char **argv)
 	Passed_Info_t info[] = {Info_Initialization};
 	int fileD = 2;
 
-	asm("mov %1, %0\n\t"
+	/*asm("mov %1, %0\n\t"
 		"add $3, %0"
 		: "=r"(fileD)
-		: "r"(fileD));
+		: "r"(fileD));*/
+		fileD += 3;
 
 	if (argc == 2)
 	{
