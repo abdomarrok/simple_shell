@@ -14,7 +14,8 @@ char *Get_Hist_File(Passed_Info_t *Pinfo)
 	dirctory = _Get_Env(Pinfo, "HOME=");
 	if (!dirctory)
 		return (NULL);
-	Buffer = malloc(sizeof(char) * (_StrLen(dirctory) + _StrLen(History_File) + 2));
+Buffer =
+malloc(sizeof(char) * (_StrLen(dirctory) + _StrLen(History_File) + 2));
 	if (!Buffer)
 		return (NULL);
 	Buffer[0] = 0;

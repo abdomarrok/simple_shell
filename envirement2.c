@@ -59,7 +59,7 @@ char **Get_Environ(Passed_Info_t *Pinfo)
  * @Pinfo: Structure containing potential arguments. Used to maintain
  *        constant function prototype.
  *  Return: 1 on delete, 0 otherwise
- * @var: the string env var property
+ * @name: the string env var property
  */
 int RemoveEnvVarByName(Passed_Info_t *Pinfo, char *name)
 {

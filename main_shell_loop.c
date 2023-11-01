@@ -3,15 +3,14 @@
 /**
  * main_shell_loop - main shell loop
  * @Pinfo: the parameter & return Pinfo struct
- * @av: the argument vector from main()
+ * @argv: the argument vector from main()
  *
  * Return: 0 on success, 1 on error, or error code
  */
-int main_shell_loop(Passed_Info_t *Pinfo, char **av)
+int main_shell_loop(Passed_Info_t *Pinfo, char **argv)
 {
 	ssize_t r = 0;
 	int BuiltinR = 0;
-
 	while (r != -1 && BuiltinR != -2)
 	{
 		Init_Info(Pinfo);
@@ -21,7 +20,7 @@ int main_shell_loop(Passed_Info_t *Pinfo, char **av)
 		r = Get_in(Pinfo);
 		if (r != -1)
 		{
-			Set_info(Pinfo, av);
+			Set_info(Pinfo, argv);
 			BuiltinR = Find_Built_In(Pinfo);
 			if (BuiltinR == -1)
 				Find_Command(Pinfo);
@@ -107,7 +106,8 @@ void Find_Command(Passed_Info_t *Pinfo)
 	}
 	else
 	{
-		if ((Is_InterActiveMode(Pinfo) || _Get_Env(Pinfo, "PATH=") || Pinfo->argv[0][0] == '/') && Is_Command(Pinfo, Pinfo->argv[0]))
+if ((Is_InterActiveMode(Pinfo) || _Get_Env(Pinfo, "PATH=") || Pinfo->argv[0][0] == '/') &&
+Is_Command(Pinfo, Pinfo->argv[0]))
 			Fork_Command(Pinfo);
 		else if (*(Pinfo->arg) != '\n')
 		{

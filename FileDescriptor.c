@@ -9,17 +9,16 @@
  */
 int _PutFileDescriptor(char ch, int fileD)
 {
-    static int i;
-    static char Buffer[W_Buffer_Size];
-
-    if (ch == -1 || i >= W_Buffer_Size)
-    {
-        write(fileD, Buffer, i);
-        i = 0;
-    }
-    if (ch != -1)
-        Buffer[i++] = ch;
-    return (1);
+static int i;
+static char Buffer[W_Buffer_Size];
+if (ch == -1 || i >= W_Buffer_Size)
+{
+write(fileD, Buffer, i);
+i = 0;
+}
+if (ch != -1)
+Buffer[i++] = ch;
+return (1);
 }
 
 /**
@@ -31,13 +30,12 @@ int _PutFileDescriptor(char ch, int fileD)
  */
 int _PutsFileDescriptorSring(char *string, int fileD)
 {
-    int i = 0;
-
-    if (!string)
-        return (0);
-    while (*string)
-    {
-        i += _PutFileDescriptor(*string++, fileD);
-    }
-    return (i);
+int i = 0;
+if (!string)
+return (0);
+while (*string)
+{
+i += _PutFileDescriptor(*string++, fileD);
+}
+return (i);
 }
