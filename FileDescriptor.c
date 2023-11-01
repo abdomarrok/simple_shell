@@ -17,8 +17,8 @@ int _PutFileDescriptor(char ch, int fileD)
         write(fileD, Buffer, i);
         i = 0;
     }
-    if (c != -1)
-        Buffer[i++] = c;
+    if (ch != -1)
+        Buffer[i++] = ch;
     return (1);
 }
 
