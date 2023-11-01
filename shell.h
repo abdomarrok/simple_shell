@@ -92,12 +92,11 @@ typedef struct Passed_Info
 	int History_File_count;
 } Passed_Info_t;
 
-#define Info_Initialization                                                     \
-	{                                                                           \
-		NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, 0, 0, NULL, \
-			0, 0, 0                                                             \
-	}
-
+#define Info_Initialization                          \
+    {                                              \
+        NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL,   \
+        NULL, NULL, NULL, 0, 0, NULL, 0, 0, 0       \
+    }
 /**
  *struct Built_In - contains a Built_In string and related function
  *@type: the Built_In command flag
