@@ -21,7 +21,7 @@ if ((Is_Delim(string[i + 1], delim) || !string[i + 1]))
 WordNums++;
 if (WordNums == 0)
 return (NULL);
-s = malloc((1 + WordNums) * sizeof(char *));
+s = malloc((1 + WordNums) * sizeof(char*));
 if (!s)
 return (NULL);
 for (i = 0, j = 0; j < WordNums; j++)
