@@ -11,6 +11,7 @@ char **_strtok(char *string, char *delim)
 {
 int i, j, k, m, WordNums = 0;
 char **s;
+size_t element_size = sizeof(char *);
 if (string == NULL || string[0] == 0)
 return (NULL);
 if (!delim)
@@ -21,7 +22,7 @@ if ((Is_Delim(string[i + 1], delim) || !string[i + 1]))
 WordNums++;
 if (WordNums == 0)
 return (NULL);
-s = malloc((1 + WordNums) * sizeof(char *));
+s = malloc((1 + WordNums) * element_size);
 if (!s)
 return (NULL);
 for (i = 0, j = 0; j < WordNums; j++)
