@@ -8,18 +8,15 @@
  */
 int set_alias(Passed_Info_t *Pinfo, char *string)
 {
-    char *p;
-
-    p = _LocateChar(string, '=');
-    if (!p)
-        return (1);
-    if (!*++p)
-        return (Remove_alias(Pinfo, string));
-
-    Remove_alias(Pinfo, string);
-    return (ajouterNode_end(&(Pinfo->alias), string, 0) == NULL);
+char *p;
+p = _LocateChar(string, '=');
+if (!p)
+return (1);
+if (!*++p)
+return (Remove_alias(Pinfo, string));
+Remove_alias(Pinfo, string);
+return (ajouterNode_end(&(Pinfo->alias), string, 0) == NULL);
 }
-
 /**
  * print_alias - prints an alias string
  * @node: the alias node
@@ -28,19 +25,18 @@ int set_alias(Passed_Info_t *Pinfo, char *string)
  */
 int print_alias(MyListString *node)
 {
-    char *p = NULL, *a = NULL;
-
-    if (node)
+char *p = NULL, *a = NULL;
+if (node)
     {
-        p = _LocateChar(node->string, '=');
-        for (a = node->string; a <= p; a++)
-            _putchar(*a);
-        _putchar('\'');
-        _puts(p + 1);
-        _puts("'\n");
-        return (0);
-    }
-    return (1);
+p = _LocateChar(node->string, '=');
+for (a = node->string; a <= p; a++)
+_putchar(*a);
+_putchar('\'');
+_puts(p + 1);
+_puts("'\n");
+return (0);
+}
+return (1);
 }
 
 /**
