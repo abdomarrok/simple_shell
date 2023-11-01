@@ -17,10 +17,9 @@ char **_strtok(char *string, char *delim)
 	if (!delim)
 		delim = " ";
 	for (i = 0; string[i] != '\0'; i++)
-if (!Is_Delim(string[i], delim) &&
-(Is_Delim(string[i + 1], delim) || !string[i + 1]))
-			WordNums++;
-
+ if (!Is_Delim(string[i], delim) &&
+        (Is_Delim(string[i + 1], delim) || !string[i + 1]))
+        WordNums++;
 	if (WordNums == 0)
 		return (NULL);
 	s = malloc((1 + WordNums) * sizeof(char *));
