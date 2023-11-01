@@ -1,7 +1,7 @@
 #include "shell.h"
 
 /**
- * input_Buffer - buffers chained commands
+ * input_buf - buffers chained commands
  * @Pinfo: parameter struct
  * @Buffer: address of buffer
  * @length: address of length var
@@ -88,7 +88,7 @@ ssize_t Get_in(Passed_Info_t *Pinfo)
 }
 
 /**
- * read_Buffer - reads a buffer
+ * read_buf - reads a buffer
  * @Pinfo: parameter struct
  * @Buffer: buffer
  * @i: size
