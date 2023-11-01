@@ -9,14 +9,9 @@
  */
 int main(int argc, char **argv)
 {
-	Passed_Info_t info[] = {Info_Initialization};
+	Passed_Info_t Pinfo[] = {Info_Initialization};
 	int fileD = 2;
-
-	/*asm("mov %1, %0\n\t"
-		"add $3, %0"
-		: "=r"(fileD)
-		: "r"(fileD));*/
-		fileD += 3;
+	fileD += 3;
 
 	if (argc == 2)
 	{
@@ -36,10 +31,10 @@ int main(int argc, char **argv)
 			}
 			return (EXIT_FAILURE);
 		}
-		info->ReadFileInput = fileD;
+		Pinfo->ReadFileInput = fileD;
 	}
-	Populate_Envs(info);
-	Get_Hist_file(info);
-	main_shell_loop(info, argv);
+	Populate_Envs(Pinfo);
+	Get_Hist_file(Pinfo);
+	main_shell_loop(Pinfo, argv);
 	return (EXIT_SUCCESS);
 }

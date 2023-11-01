@@ -2,45 +2,45 @@
 
 /**
  * _StrCopy - copies a string
- * @dest: the destination
- * @src: the source
+ * @destination: the destination
+ * @source: the source
  *
  * Return: pointer to destination
  */
-char *_StrCopy(char *dest, char *src)
+char *_StrCopy(char *destination, char *source)
 {
     int i = 0;
 
-    if (dest == src || src == 0)
-        return (dest);
-    while (src[i])
+    if (destination == source || source == 0)
+        return (destination);
+    while (source[i])
     {
-        dest[i] = src[i];
+        destination[i] = source[i];
         i++;
     }
-    dest[i] = 0;
-    return (dest);
+    destination[i] = 0;
+    return (destination);
 }
 
 /**
  * _StrDublicate - duplicates a string
- * @str: the string to duplicate
+ * @string: the string to duplicate
  *
  * Return: pointer to the duplicated string
  */
-char *_StrDublicate(const char *str)
+char *_StrDublicate(const char *string)
 {
     int length = 0;
-    char *ret;
+    char *res;
 
-    if (str == NULL)
+    if (string == NULL)
         return (NULL);
-    while (*str++)
+    while (*string++)
         length++;
-    ret = malloc(sizeof(char) * (length + 1));
-    if (!ret)
+    res = malloc(sizeof(char) * (length + 1));
+    if (!res)
         return (NULL);
     for (length++; length--;)
-        ret[length] = *--str;
-    return (ret);
+        res[length] = *--string;
+    return (res);
 }

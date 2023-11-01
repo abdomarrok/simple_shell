@@ -1,19 +1,19 @@
 #include "shell.h"
 /**
  *_puts - prints an input string
- *@str: the string to be printed
+ *@string: the string to be printed
  *
  * Return: Nothing
  */
-void _puts(char *str)
+void _puts(char *string)
 {
 	int i = 0;
 
-	if (!str)
+	if (!string)
 		return;
-	while (str[i] != '\0')
+	while (string[i] != '\0')
 	{
-		_putchar(str[i]);
+		_putchar(string[i]);
 		i++;
 	}
 }
@@ -28,14 +28,14 @@ void _puts(char *str)
 int _putchar(char c)
 {
 	static int i;
-	static char buf[W_Buffer_Size];
+	static char Buffer[W_Buffer_Size];
 
 	if (c == -1 || i >= W_Buffer_Size)
 	{
-		write(1, buf, i);
+		write(1, Buffer, i);
 		i = 0;
 	}
 	if (c != -1)
-		buf[i++] = c;
+		Buffer[i++] = c;
 	return (1);
 }

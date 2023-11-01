@@ -2,73 +2,73 @@
 
 /**
  * Init_Info - initializes Passed_Info_t struct
- * @info: struct address
+ * @Pinfo: struct address
  */
-void Init_Info(Passed_Info_t *info)
+void Init_Info(Passed_Info_t *Pinfo)
 {
-	info->arg = NULL;
-	info->argv = NULL;
-	info->path = NULL;
-	info->argc = 0;
+	Pinfo->arg = NULL;
+	Pinfo->argv = NULL;
+	Pinfo->path = NULL;
+	Pinfo->argc = 0;
 }
 
 /**
  * Set_info - initializes Passed_Info_t struct
- * @info: struct address
- * @av: argument vector
+ * @Pinfo: struct address
+ * @argv: argument vector
  */
-void Set_info(Passed_Info_t *info, char **av)
+void Set_info(Passed_Info_t *Pinfo, char **argv)
 {
 	int i = 0;
 
-	info->File_Name = av[0];
-	if (info->arg)
+	Pinfo->File_Name = argv[0];
+	if (Pinfo->arg)
 	{
-		info->argv = _strtok(info->arg, " \t");
-		if (!info->argv)
+		Pinfo->argv = _strtok(Pinfo->arg, " \t");
+		if (!Pinfo->argv)
 		{
 
-			info->argv = malloc(sizeof(char *) * 2);
-			if (info->argv)
+			Pinfo->argv = malloc(sizeof(char *) * 2);
+			if (Pinfo->argv)
 			{
-				info->argv[0] = _StrDublicate(info->arg);
-				info->argv[1] = NULL;
+				Pinfo->argv[0] = _StrDublicate(Pinfo->arg);
+				Pinfo->argv[1] = NULL;
 			}
 		}
-		for (i = 0; info->argv && info->argv[i]; i++)
+		for (i = 0; Pinfo->argv && Pinfo->argv[i]; i++)
 			;
-		info->argc = i;
+		Pinfo->argc = i;
 
-		Change_alias(info);
-		Change_vars(info);
+		Change_alias(Pinfo);
+		Change_vars(Pinfo);
 	}
 }
 
 /**
  * Free_Passed_info - frees Passed_Info_t struct fields
- * @info: struct address
+ * @Pinfo: struct address
  * @all: true if freeing all fields
  */
-void Free_Passed_info(Passed_Info_t *info, int all)
+void Free_Passed_info(Passed_Info_t *Pinfo, int all)
 {
-	FreeStrofStr(info->argv);
-	info->argv = NULL;
-	info->path = NULL;
+	FreeStrofStr(Pinfo->argv);
+	Pinfo->argv = NULL;
+	Pinfo->path = NULL;
 	if (all)
 	{
-		if (!info->Command_Buffer)
-			free(info->arg);
-		if (info->env)
-			FreeNodes(&(info->env));
-		if (info->history)
-			FreeNodes(&(info->history));
-		if (info->alias)
-			FreeNodes(&(info->alias));
-		FreeStrofStr(info->environ);
-		info->environ = NULL;
-		FreesPointer((void **)info->Command_Buffer);
-		if (info->ReadFileInput > 2)
-			close(info->ReadFileInput);
+		if (!Pinfo->Command_Buffer)
+			free(Pinfo->arg);
+		if (Pinfo->env)
+			FreeNodes(&(Pinfo->env));
+		if (Pinfo->history)
+			FreeNodes(&(Pinfo->history));
+		if (Pinfo->alias)
+			FreeNodes(&(Pinfo->alias));
+		FreeStrofStr(Pinfo->environ);
+		Pinfo->environ = NULL;
+		FreesPointer((void **)Pinfo->Command_Buffer);
+		if (Pinfo->ReadFileInput > 2)
+			close(Pinfo->ReadFileInput);
 		_putchar(-1);
 	}
 }

@@ -2,40 +2,40 @@
 
 /**
  * _StrLen - returns the length of a string
- * @s: the string whose length to check
+ * @string: the string whose length to check
  *
  * Return: integer length of string
  */
-int _StrLen(char *s)
+int _StrLen(char *string)
 {
 	int i = 0;
 
-	if (!s)
+	if (!string)
 		return (0);
 
-	while (*s++)
+	while (*string++)
 		i++;
 	return (i);
 }
 
 /**
  * _StrCompare - performs lexicogarphic comparison of two strangs.
- * @s1: the first strang
- * @s2: the second strang
+ * @string1: the first strang
+ * @string2: the second strang
  *
- * Return: negative if s1 < s2, positive if s1 > s2, zero if s1 == s2
+ * Return: negative if string1 < string2, positive if string1 > string2, zero if string1 == string2
  */
-int _StrCompare(char *s1, char *s2)
+int _StrCompare(char *string1, char *string2)
 {
-	while (*s1 && *s2)
+	while (*string1 && *string2)
 	{
-		if (*s1 != *s2)
-			return (*s1 - *s2);
-		s1++;
-		s2++;
+		if (*string1 != *string2)
+			return (*string1 - *string2);
+		string1++;
+		string2++;
 	}
-	if (*s1 == *s2)
+	if (*string1 == *string2)
 		return (0);
 	else
-		return (*s1 < *s2 ? -1 : 1);
+		return (*string1 < *string2 ? -1 : 1);
 }

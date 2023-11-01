@@ -18,31 +18,31 @@ char *_MemorySet(char *s, char b, unsigned int n)
 
 /**
  * FreeStrofStr - frees a string of strings
- * @pp: string of strings
+ * @pointer: string of strings
  */
-void FreeStrofStr(char **pp)
+void FreeStrofStr(char **pointer)
 {
-	char **a = pp;
+	char **a = pointer;
 
-	if (!pp)
+	if (!pointer)
 		return;
-	while (*pp)
-		free(*pp++);
+	while (*pointer)
+		free(*pointer++);
 	free(a);
 }
 
 /**
  * FreesPointer - frees a pointer and NULLs the address
- * @ptr: address of the pointer to free
+ * @pointer: address of the pointer to free
  *
  * Return: 1 if freed, otherwise 0.
  */
-int FreesPointer(void **ptr)
+int FreesPointer(void **pointer)
 {
-	if (ptr && *ptr)
+	if (pointer && *pointer)
 	{
-		free(*ptr);
-		*ptr = NULL;
+		free(*pointer);
+		*pointer = NULL;
 		return (1);
 	}
 	return (0);

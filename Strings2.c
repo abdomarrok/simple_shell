@@ -16,19 +16,19 @@ char *StrStartWith(const char *haystack, const char *needle)
 
 /**
  * _StrConcatinate - concatenates two strings
- * @dest: the destination buffer
- * @src: the source buffer
+ * @destination: the destination buffer
+ * @source: the source buffer
  *
  * Return: pointer to destination buffer
  */
-char *_StrConcatinate(char *dest, char *src)
+char *_StrConcatinate(char *destination, char *source)
 {
-    char *ret = dest;
+    char *res = destination;
 
-    while (*dest)
-        dest++;
-    while (*src)
-        *dest++ = *src++;
-    *dest = *src;
-    return (ret);
+    while (*destination)
+        destination++;
+    while (*source)
+        *destination++ = *source++;
+    *destination = *source;
+    return (res);
 }

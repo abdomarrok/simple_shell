@@ -2,20 +2,20 @@
 
 /**
  **_StrNCopy - copies a string
- *@dest: the destination string to be copied to
- *@src: the source string
+ *@destination: the destination string to be copied to
+ *@source: the source string
  *@n: the amount of characters to be copied
  *Return: the concatenated string
  */
-char *_StrNCopy(char *dest, char *src, int n)
+char *_StrNCopy(char *destination, char *source, int n)
 {
 	int i, j;
-	char *s = dest;
+	char *s = destination;
 
 	i = 0;
-	while (src[i] != '\0' && i < n - 1)
+	while (source[i] != '\0' && i < n - 1)
 	{
-		dest[i] = src[i];
+		destination[i] = source[i];
 		i++;
 	}
 	if (i < n)
@@ -23,7 +23,7 @@ char *_StrNCopy(char *dest, char *src, int n)
 		j = i;
 		while (j < n)
 		{
-			dest[j] = '\0';
+			destination[j] = '\0';
 			j++;
 		}
 	}

@@ -1,28 +1,28 @@
 #include "shell.h"
 /**
  **_StrNConcatinate - concatenates two strings
- *@dest: the first string
- *@src: the second string
+ *@destination: the first string
+ *@source: the second string
  *@n: the amount of bytes to be maximally used
  *Return: the concatenated string
  */
-char *_StrNConcatinate(char *dest, char *src, int n)
+char *_StrNConcatinate(char *destination, char *source, int n)
 {
     int i, j;
-    char *s = dest;
+    char *s = destination;
 
     i = 0;
     j = 0;
-    while (dest[i] != '\0')
+    while (destination[i] != '\0')
         i++;
-    while (src[j] != '\0' && j < n)
+    while (source[j] != '\0' && j < n)
     {
-        dest[i] = src[j];
+        destination[i] = source[j];
         i++;
         j++;
     }
     if (j < n)
-        dest[i] = '\0';
+        destination[i] = '\0';
     return (s);
 }
 

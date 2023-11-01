@@ -2,38 +2,38 @@
 
 /**
  * Is_InterActiveMode - returns true if shell is Is_InterActiveMode mode
- * @info: struct address
+ * @Pinfo: struct address
  *
  * Return: 1 if Is_InterActiveMode mode, 0 otherwise
  */
-int Is_InterActiveMode(Passed_Info_t *info)
+int Is_InterActiveMode(Passed_Info_t *Pinfo)
 {
-	return (isatty(STDIN_FILENO) && info->ReadFileInput <= 2);
+	return (isatty(STDIN_FILENO) && Pinfo->ReadFileInput <= 2);
 }
 
 /**
  * Is_Delim - checks if character is a delimeter
- * @c: the char to check
+ * @ch: the char to check
  * @delim: the delimeter string
  * Return: 1 if true, 0 if false
  */
-int Is_Delim(char c, char *delim)
+int Is_Delim(char ch, char *delim)
 {
 	while (*delim)
-		if (*delim++ == c)
+		if (*delim++ == ch)
 			return (1);
 	return (0);
 }
 
 /**
  *Is_Alphabet - checks for alphabetic character
- *@c: The character to input
+ *@ch: The character to input
  *Return: 1 if c is alphabetic, 0 otherwise
  */
 
-int Is_Alphabet(int c)
+int Is_Alphabet(int ch)
 {
-	if ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z'))
+	if ((ch >= 'a' && ch <= 'z') || (ch >= 'A' && ch <= 'Z'))
 		return (1);
 	else
 		return (0);
@@ -47,30 +47,30 @@ int Is_Alphabet(int c)
 
 int _atoi(char *s)
 {
-	int i, sign = 1, flag = 0, output;
-	unsigned int result = 0;
+	int i, Sign = 1, Flag = 0, OutPut;
+	unsigned int res = 0;
 
-	for (i = 0; s[i] != '\0' && flag != 2; i++)
+	for (i = 0; s[i] != '\0' && Flag != 2; i++)
 	{
 		if (s[i] == '-')
-			sign *= -1;
+			Sign *= -1;
 
 		if (s[i] >= '0' && s[i] <= '9')
 		{
-			flag = 1;
-			result *= 10;
-			result += (s[i] - '0');
+			Flag = 1;
+			res *= 10;
+			res += (s[i] - '0');
 		}
-		else if (flag == 1)
-			flag = 2;
+		else if (Flag == 1)
+			Flag = 2;
 	}
 
-	if (sign == -1)
-		output = -result;
+	if (Sign == -1)
+		OutPut = -res;
 	else
-		output = result;
+		OutPut = res;
 
-	return (output);
+	return (OutPut);
 }
 
 /**
@@ -82,39 +82,39 @@ int _atoi(char *s)
 int Str_to_Int(char *s)
 {
 	int i = 0;
-	unsigned long int result = 0;
+	unsigned long int res = 0;
 
 	if (*s == '+')
-		s++; /* TODO: why does this make main return 255? */
+		s++; /
 	for (i = 0; s[i] != '\0'; i++)
 	{
 		if (s[i] >= '0' && s[i] <= '9')
 		{
-			result *= 10;
-			result += (s[i] - '0');
-			if (result > INT_MAX)
+			res *= 10;
+			res += (s[i] - '0');
+			if (res > INT_MAX)
 				return (-1);
 		}
 		else
 			return (-1);
 	}
-	return (result);
+	return (res);
 }
 
 /**
  * PrintErr - prints an error message
- * @info: the parameter & return info struct
+ * @Pinfo: the parameter & return Pinfo struct
  * @estr: string containing specified error type
  * Return: 0 if no numbers in string, converted number otherwise
  *        -1 on error
  */
-void PrintErr(Passed_Info_t *info, char *estr)
+void PrintErr(Passed_Info_t *Pinfo, char *estr)
 {
-	_PutsErr(info->File_Name);
+	_PutsErr(Pinfo->File_Name);
 	_PutsErr(": ");
-	PrintDecimal(info->Line_Count, STDERR_FILENO);
+	PrintDecimal(Pinfo->Line_Count, STDERR_FILENO);
 	_PutsErr(": ");
-	_PutsErr(info->argv[0]);
+	_PutsErr(Pinfo->argv[0]);
 	_PutsErr(": ");
 	_PutsErr(estr);
 }
@@ -162,11 +162,11 @@ int PrintDecimal(int input, int fd)
  * ConvertNum - converter function, a clone of itoa
  * @num: number
  * @base: base
- * @flags: argument flags
+ * @Flags: argument Flags
  *
  * Return: string
  */
-char *ConvertNum(long int num, int base, int flags)
+char *ConvertNum(long int num, int base, int Flags)
 {
 	static char *array;
 	static char buffer[50];
@@ -174,12 +174,12 @@ char *ConvertNum(long int num, int base, int flags)
 	char *ptr;
 	unsigned long n = num;
 
-	if (!(flags & ConvUnsigned) && num < 0)
+	if (!(Flags & ConvUnsigned) && num < 0)
 	{
 		n = -num;
 		sign = '-';
 	}
-	array = flags & ConvLower ? "0123456789abcdef" : "0123456789ABCDEF";
+	array = Flags & ConvLower ? "0123456789abcdef" : "0123456789ABCDEF";
 	ptr = &buffer[49];
 	*ptr = '\0';
 
@@ -196,18 +196,18 @@ char *ConvertNum(long int num, int base, int flags)
 
 /**
  * DeleteComment - function Changes first instance of '#' with '\0'
- * @buf: address of the string to modify
+ * @Buffer: address of the string to modify
  *
  * Return: Always 0;
  */
-void DeleteComment(char *buf)
+void DeleteComment(char *Buffer)
 {
 	int i;
 
-	for (i = 0; buf[i] != '\0'; i++)
-		if (buf[i] == '#' && (!i || buf[i - 1] == ' '))
+	for (i = 0; Buffer[i] != '\0'; i++)
+		if (Buffer[i] == '#' && (!i || Buffer[i - 1] == ' '))
 		{
-			buf[i] = '\0';
+			Buffer[i] = '\0';
 			break;
 		}
 }
