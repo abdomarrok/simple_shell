@@ -8,22 +8,21 @@
  */
 char *_StrNConcatinate(char *destination, char *source, int n)
 {
-    int i, j;
-    char *s = destination;
-
-    i = 0;
-    j = 0;
-    while (destination[i] != '\0')
-        i++;
-    while (source[j] != '\0' && j < n)
-    {
-        destination[i] = source[j];
-        i++;
-        j++;
-    }
-    if (j < n)
-        destination[i] = '\0';
-    return (s);
+int i, j;
+char *s = destination;
+i = 0;
+j = 0;
+while (destination[i] != '\0')
+i++;
+while (source[j] != '\0' && j < n)
+{
+destination[i] = source[j];
+i++;
+j++;
+}
+if (j < n)
+destination[i] = '\0';
+return (s);
 }
 
 /**
@@ -34,11 +33,10 @@ char *_StrNConcatinate(char *destination, char *source, int n)
  */
 char *_LocateChar(char *s, char c)
 {
-    do
-    {
-        if (*s == c)
-            return (s);
-    } while (*s++ != '\0');
-
-    return (NULL);
+do
+{
+if (*s == c)
+return (s);
+} while (*s++ != '\0');
+return (NULL);
 }

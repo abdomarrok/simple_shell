@@ -8,10 +8,10 @@
  */
 char *StrStartWith(const char *haystack, const char *needle)
 {
-    while (*needle)
-        if (*needle++ != *haystack++)
-            return (NULL);
-    return ((char *)haystack);
+while (*needle)
+if (*needle++ != *haystack++)
+return (NULL);
+return ((char *)haystack);
 }
 
 /**
@@ -23,12 +23,11 @@ char *StrStartWith(const char *haystack, const char *needle)
  */
 char *_StrConcatinate(char *destination, char *source)
 {
-    char *res = destination;
-
-    while (*destination)
-        destination++;
-    while (*source)
-        *destination++ = *source++;
-    *destination = *source;
-    return (res);
+char *res = destination;
+while (*destination)
+destination++;
+while (*source)
+*destination++ = *source++;
+*destination = *source;
+return (res);
 }

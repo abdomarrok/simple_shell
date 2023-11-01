@@ -11,7 +11,7 @@ int main(int argc, char **argv)
 {
 	Passed_Info_t Pinfo[] = {Info_Initialization};
 	int fileD = 2;
-	
+
 	fileD += 3;
 	if (argc == 2)
 	{

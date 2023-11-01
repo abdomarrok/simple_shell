@@ -9,17 +9,16 @@
  */
 char *_StrCopy(char *destination, char *source)
 {
-    int i = 0;
-
-    if (destination == source || source == 0)
-        return (destination);
-    while (source[i])
-    {
-        destination[i] = source[i];
-        i++;
-    }
-    destination[i] = 0;
-    return (destination);
+int i = 0;
+if (destination == source || source == 0)
+return (destination);
+while (source[i])
+{
+destination[i] = source[i];
+i++;
+}
+destination[i] = 0;
+return (destination);
 }
 
 /**
@@ -30,17 +29,16 @@ char *_StrCopy(char *destination, char *source)
  */
 char *_StrDublicate(const char *string)
 {
-    int length = 0;
-    char *res;
-
-    if (string == NULL)
-        return (NULL);
-    while (*string++)
-        length++;
-    res = malloc(sizeof(char) * (length + 1));
-    if (!res)
-        return (NULL);
-    for (length++; length--;)
-        res[length] = *--string;
-    return (res);
+int length = 0;
+char *res;
+if (string == NULL)
+return (NULL);
+while (*string++)
+length++;
+res = malloc(sizeof(char) * (length + 1));
+if (!res)
+return (NULL);
+for (length++; length--;)
+res[length] = *--string;
+return (res);
 }

@@ -23,7 +23,7 @@ int _StrLen(char *string)
  * @string1: the first strang
  * @string2: the second strang
  *
- * Return: negative if string1 < string2, positive if string1 > string2, zero if string1 == string2
+ * Return: negative or positive or zero
  */
 int _StrCompare(char *string1, char *string2)
 {
