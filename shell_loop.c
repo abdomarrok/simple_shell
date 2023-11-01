@@ -31,7 +31,8 @@ void Find_Command(Passed_Info_t *Pinfo)
 	}
 	else
 	{
-if ((Is_InterActiveMode(Pinfo) || _Get_Env(Pinfo, "PATH=") || Pinfo->argv[0][0] == '/') &&
+if ((Is_InterActiveMode(Pinfo) || _Get_Env(Pinfo, "PATH=") ||
+Pinfo->argv[0][0] == '/') &&
 Is_Command(Pinfo, Pinfo->argv[0]))
 			Fork_Command(Pinfo);
 		else if (*(Pinfo->arg) != '\n')

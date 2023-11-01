@@ -73,7 +73,7 @@ char *ConvertNum(long int num, int base, int Flags)
 	char *ptr;
 	unsigned long n = num;
 
-	if (!(Flags & ConvUnsigned) && num < 0)
+	if (!(Flags & ConvUnsigned_int) && num < 0)
 	{
 		n = -num;
 		sign = '-';

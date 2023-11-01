@@ -23,7 +23,7 @@
 
 /* for ConvertNum() */
 #define ConvLower 1
-#define ConvUnsigned 2
+#define ConvUnsigned_int 2
 
 /* 1 if using system getline() */
 #define UseTheGetLine 0
