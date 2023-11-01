@@ -2,59 +2,59 @@
 
 /**
  * main_shell_loop - main shell loop
- * @info: the parameter & return info struct
+ * @Pinfo: the parameter & return Pinfo struct
  * @av: the argument vector from main()
  *
  * Return: 0 on success, 1 on error, or error code
  */
-int main_shell_loop(Passed_Info_t *info, char **av)
+int main_shell_loop(Passed_Info_t *Pinfo, char **av)
 {
 	ssize_t r = 0;
-	int builtin_ret = 0;
+	int BuiltinR = 0;
 
-	while (r != -1 && builtin_ret != -2)
+	while (r != -1 && BuiltinR != -2)
 	{
-		Init_Info(info);
-		if (Is_InterActiveMode(info))
+		Init_Info(Pinfo);
+		if (Is_InterActiveMode(Pinfo))
 			_puts("$ ");
 		_PutCharsErr(-1);
-		r = Get_in(info);
+		r = Get_in(Pinfo);
 		if (r != -1)
 		{
-			Set_info(info, av);
-			builtin_ret = Find_Built_In(info);
-			if (builtin_ret == -1)
-				Find_Command(info);
+			Set_info(Pinfo, av);
+			BuiltinR = Find_Built_In(Pinfo);
+			if (BuiltinR == -1)
+				Find_Command(Pinfo);
 		}
-		else if (Is_InterActiveMode(info))
+		else if (Is_InterActiveMode(Pinfo))
 			_putchar('\n');
-		Free_Passed_info(info, 0);
+		Free_Passed_info(Pinfo, 0);
 	}
-	Set_Hist_File(info);
-	Free_Passed_info(info, 1);
-	if (!Is_InterActiveMode(info) && info->status)
-		exit(info->status);
-	if (builtin_ret == -2)
+	Set_Hist_File(Pinfo);
+	Free_Passed_info(Pinfo, 1);
+	if (!Is_InterActiveMode(Pinfo) && Pinfo->status)
+		exit(Pinfo->status);
+	if (BuiltinR == -2)
 	{
-		if (info->Error_Number == -1)
-			exit(info->status);
-		exit(info->Error_Number);
+		if (Pinfo->Error_Number == -1)
+			exit(Pinfo->status);
+		exit(Pinfo->Error_Number);
 	}
-	return (builtin_ret);
+	return (BuiltinR);
 }
 
 /**
  * Find_Built_In - finds a builtin command
- * @info: the parameter & return info struct
+ * @Pinfo: the parameter & return Pinfo struct
  *
  * Return: -1 if builtin not found,
  *			0 if builtin executed successfully,
  *			1 if builtin found but not successful,
  *			-2 if builtin signals exit()
  */
-int Find_Built_In(Passed_Info_t *info)
+int Find_Built_In(Passed_Info_t *Pinfo)
 {
-	int i, built_in_ret = -1;
+	int i, BuiltinR = -1;
 	Built_In_table builtintbl[] = {
 		{"exit", builtin_exit},
 		{"env", _env},
@@ -67,77 +67,77 @@ int Find_Built_In(Passed_Info_t *info)
 		{NULL, NULL}};
 
 	for (i = 0; builtintbl[i].type; i++)
-		if (_StrCompare(info->argv[0], builtintbl[i].type) == 0)
+		if (_StrCompare(Pinfo->argv[0], builtintbl[i].type) == 0)
 		{
-			info->Line_Count++;
-			built_in_ret = builtintbl[i].func(info);
+			Pinfo->Line_Count++;
+			BuiltinR = builtintbl[i].func(Pinfo);
 			break;
 		}
-	return (built_in_ret);
+	return (BuiltinR);
 }
 
 /**
  * Find_Command - finds a command in PATH
- * @info: the parameter & return info struct
+ * @Pinfo: the parameter & return Pinfo struct
  *
  * Return: void
  */
-void Find_Command(Passed_Info_t *info)
+void Find_Command(Passed_Info_t *Pinfo)
 {
 	char *path = NULL;
 	int i, k;
 
-	info->path = info->argv[0];
-	if (info->LineCount_Flag == 1)
+	Pinfo->path = Pinfo->argv[0];
+	if (Pinfo->LineCount_Flag == 1)
 	{
-		info->Line_Count++;
-		info->LineCount_Flag = 0;
+		Pinfo->Line_Count++;
+		Pinfo->LineCount_Flag = 0;
 	}
-	for (i = 0, k = 0; info->arg[i]; i++)
-		if (!Is_Delim(info->arg[i], " \t\n"))
+	for (i = 0, k = 0; Pinfo->arg[i]; i++)
+		if (!Is_Delim(Pinfo->arg[i], " \t\n"))
 			k++;
 	if (!k)
 		return;
 
-	path = Find_Command_Path(info, _Get_Env(info, "PATH="), info->argv[0]);
+	path = Find_Command_Path(Pinfo, _Get_Env(Pinfo, "PATH="), Pinfo->argv[0]);
 	if (path)
 	{
-		info->path = path;
-		Fork_Command(info);
+		Pinfo->path = path;
+		Fork_Command(Pinfo);
 	}
 	else
 	{
-		if ((Is_InterActiveMode(info) || _Get_Env(info, "PATH=") || info->argv[0][0] == '/') && Is_Command(info, info->argv[0]))
-			Fork_Command(info);
-		else if (*(info->arg) != '\n')
+		if ((Is_InterActiveMode(Pinfo) || _Get_Env(Pinfo, "PATH=") || Pinfo->argv[0][0] == '/') && Is_Command(Pinfo, Pinfo->argv[0]))
+			Fork_Command(Pinfo);
+		else if (*(Pinfo->arg) != '\n')
 		{
-			info->status = 127;
-			PrintErr(info, "not found\n");
+			Pinfo->status = 127;
+			PrintErr(Pinfo, "not found\n");
 		}
 	}
 }
 
 /**
  * Fork_Command - forks a an exec thread to run cmd
- * @info: the parameter & return info struct
+ * @Pinfo: the parameter & return Pinfo struct
  *
  * Return: void
  */
-void Fork_Command(Passed_Info_t *info)
+void Fork_Command(Passed_Info_t *Pinfo)
 {
-	pid_t child_pid;
+	pid_t c_pid;
 
-	child_pid = fork();
-	if (child_pid == -1)
+	c_pid = fork();
+	if (c_pid == -1)
 	{
 		perror("Error:");
 		return;
 	}
-	if (child_pid == 0)
+	if (c_pid == 0)
 	{
-		if (execve(info->path, info->argv, Get_Environ(info)) == -1)
+		if (execve(Pinfo->path, Pinfo->argv, Get_Environ(Pinfo)) == -1)
 		{
-			Free_Passed_info(info, 1);
+			Free_Passed_info(Pinfo, 1);
 			if (errno == EACCES)
 				exit(126);
 			exit(1);
@@ -146,12 +146,12 @@ void Fork_Command(Passed_Info_t *info)
 	}
 	else
 	{
-		wait(&(info->status));
-		if (WIFEXITED(info->status))
+		wait(&(Pinfo->status));
+		if (WIFEXITED(Pinfo->status))
 		{
-			info->status = WEXITSTATUS(info->status);
-			if (info->status == 126)
-				PrintErr(info, "Permission denied\n");
+			Pinfo->status = WEXITSTATUS(Pinfo->status);
+			if (Pinfo->status == 126)
+				PrintErr(Pinfo, "Permission denied\n");
 		}
 	}
 }

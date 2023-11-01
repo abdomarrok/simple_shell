@@ -1,43 +1,43 @@
 #include "shell.h"
 /**
- * _PutFileDescriptor - writes the character c to given fd
- * @c: The character to print
- * @fd: The filedescriptor to write to
+ * _PutFileDescriptor - writes the character c to given fileD
+ * @ch: The character to print
+ * @fileD: The filedescriptor to write to
  *
  * Return: On success 1.
  * On error, -1 is returned, and errno is set appropriately.
  */
-int _PutFileDescriptor(char c, int fd)
+int _PutFileDescriptor(char ch, int fileD)
 {
     static int i;
-    static char buf[W_Buffer_Size];
+    static char Buffer[W_Buffer_Size];
 
-    if (c == -1 || i >= W_Buffer_Size)
+    if (ch == -1 || i >= W_Buffer_Size)
     {
-        write(fd, buf, i);
+        write(fileD, Buffer, i);
         i = 0;
     }
     if (c != -1)
-        buf[i++] = c;
+        Buffer[i++] = c;
     return (1);
 }
 
 /**
  *_PutsFileDescriptorSring - prints an input string
- * @str: the string to be printed
- * @fd: the filedescriptor to write to
+ * @string: the string to be printed
+ * @fileD: the filedescriptor to write to
  *
  * Return: the number of chars put
  */
-int _PutsFileDescriptorSring(char *str, int fd)
+int _PutsFileDescriptorSring(char *string, int fileD)
 {
     int i = 0;
 
-    if (!str)
+    if (!string)
         return (0);
-    while (*str)
+    while (*string)
     {
-        i += _PutFileDescriptor(*str++, fd);
+        i += _PutFileDescriptor(*string++, fileD);
     }
     return (i);
 }

@@ -2,19 +2,19 @@
 
 /**
  *_PutsErr - prints an input string
- * @str: the string to be printed
+ * @string: the string to be printed
  *
  * Return: Nothing
  */
-void _PutsErr(char *str)
+void _PutsErr(char *string)
 {
 	int i = 0;
 
-	if (!str)
+	if (!string)
 		return;
-	while (str[i] != '\0')
+	while (string[i] != '\0')
 	{
-		_PutCharsErr(str[i]);
+		_PutCharsErr(string[i]);
 		i++;
 	}
 }
@@ -29,14 +29,14 @@ void _PutsErr(char *str)
 int _PutCharsErr(char c)
 {
 	static int i;
-	static char buf[W_Buffer_Size];
+	static char Buffer[W_Buffer_Size];
 
 	if (c == -1 || i >= W_Buffer_Size)
 	{
-		write(2, buf, i);
+		write(2, Buffer, i);
 		i = 0;
 	}
 	if (c != -1)
-		buf[i++] = c;
+		Buffer[i++] = c;
 	return (1);
 }
