@@ -30,17 +30,16 @@ void Find_Command(Passed_Info_t *Pinfo)
 		Fork_Command(Pinfo);
 	}
 	else
-	{
-if ((Is_InterActiveMode(Pinfo) || _Get_Env(Pinfo, "PATH=") ||
-Pinfo->argv[0][0] == '/') &&
-Is_Command(Pinfo, Pinfo->argv[0]))
-			Fork_Command(Pinfo);
-		else if (*(Pinfo->arg) != '\n')
-		{
-			Pinfo->status = 127;
-			PrintErr(Pinfo, "not found\n");
-		}
-	}
+if ((Is_InterActiveMode(Pinfo) || _Get_Env(Pinfo, "PATH=") || Pinfo->argv[0][0] == '/') &&
+Is_Command(Pinfo, Pinfo->argv[0])) {
+Fork_Command(Pinfo);
+} 
+else 
+if (*(Pinfo->arg) != '\n') 
+{
+Pinfo->status = 127;
+PrintErr(Pinfo, "not found\n");
+}
 }
 
 /**
