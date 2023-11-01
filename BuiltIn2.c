@@ -9,8 +9,8 @@
  */
 int _History(Passed_Info_t *Pinfo)
 {
-    Print_List(Pinfo->history);
-    return (0);
+Print_List(Pinfo->history);
+return (0);
 }
 
 /**
@@ -22,16 +22,15 @@ int _History(Passed_Info_t *Pinfo)
  */
 int unset_alias(Passed_Info_t *Pinfo, char *str)
 {
-    char *p, c;
-    int ret;
-
-    p = _LocateChar(str, '=');
-    if (!p)
-        return (1);
-    c = *p;
-    *p = 0;
-    ret = SupprimeNodeAt(&(Pinfo->alias),
-                         getNodeIndexAt(Pinfo->alias, getNodeStartWith(Pinfo->alias, str, -1)));
-    *p = c;
-    return (ret);
+char *p, c;
+int ret;
+p = _LocateChar(str, '=');
+if (!p)
+return (1);
+c = *p;
+*p = 0;
+ret = SupprimeNodeAt(&(Pinfo->alias),
+getNodeIndexAt(Pinfo->alias, getNodeStartWith(Pinfo->alias, str, -1)));
+*p = c;
+return (ret);
 }
