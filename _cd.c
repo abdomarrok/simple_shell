@@ -17,7 +17,8 @@ int _cd(Passed_Info_t *Pinfo)
 	{
 		dirctory = _Get_Env(Pinfo, "HOME=");
 		if (!dirctory)
-			chdirctory_ret = chdir((dirctory = _Get_Env(Pinfo, "PWD=")) ? dirctory : "/");
+chdirctory_ret =
+chdir((dirctory = _Get_Env(Pinfo, "PWD=")) ? dirctory : "/");
 		else
 			chdirctory_ret = chdir(dirctory);
 	}
@@ -30,7 +31,8 @@ int _cd(Passed_Info_t *Pinfo)
 			return (1);
 		}
 		_puts(_Get_Env(Pinfo, "OLDPWD=")), _putchar('\n');
-		chdirctory_ret = chdir((dirctory = _Get_Env(Pinfo, "OLDPWD=")) ? dirctory : "/");
+chdirctory_ret =
+chdir((dirctory = _Get_Env(Pinfo, "OLDPWD=")) ? dirctory : "/");
 	}
 	else
 		chdirctory_ret = chdir(Pinfo->argv[1]);
