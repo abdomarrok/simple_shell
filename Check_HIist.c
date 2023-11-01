@@ -9,26 +9,25 @@
  *
  * Return: Void
  */
-void Check_Hist_Chain(Passed_Info_t *Pinfo, char *Buffer, size_t *p, size_t i, size_t length)
+void Check_Hist_Chain(Passed_Info_t *Pinfo, char *Buffer, size_t *p,
+size_t i, size_t length)
 {
-    size_t j = *p;
-
-    if (Pinfo->Command_Buffer_Type == Command_And)
-    {
-        if (Pinfo->status)
-        {
-            Buffer[i] = 0;
-            j = length;
-        }
-    }
-    if (Pinfo->Command_Buffer_Type == Command_Or)
-    {
-        if (!Pinfo->status)
-        {
-            Buffer[i] = 0;
-            j = length;
-        }
-    }
-
-    *p = j;
+size_t j = *p;
+if (Pinfo->Command_Buffer_Type == Command_And)
+{
+if (Pinfo->status)
+{
+Buffer[i] = 0;
+j = length;
+}
+}
+if (Pinfo->Command_Buffer_Type == Command_Or)
+{
+if (!Pinfo->status)
+{
+Buffer[i] = 0;
+j = length;
+}
+}
+*p = j;
 }
